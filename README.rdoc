@@ -1,0 +1,19 @@
+= CNB
+
+Simple parser for CNB (Czech National Bank) foreign exchange rates.
+
+== Install
+
+	gem install cnb --source http://gems.github.com
+
+== Usage
+
+Example how to retrieve rates for a particular date (in this example - today).
+
+	cnb_parser = CNB::Parser.new
+	cnb_parser.parse
+
+	puts cnb_parser.date
+	puts cnb_parser.rate "GBP"
+	puts cnb_parser.rate "USD"
+	
