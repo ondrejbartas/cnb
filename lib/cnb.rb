@@ -23,6 +23,14 @@ module CNB
     
       line_no = 0
     
+      #EXAMPLE OF FILE
+      #
+      #1: 15.02.2013 #33
+      #2: zeme|mena|mnozstvi|kod|kurz
+      #3: Australie|dolar|1|AUD|19,683
+      #4: Madarsko|forint|100|HUF|8,681
+
+
       content.each_line do |line|
         line_no += 1
       
@@ -37,11 +45,17 @@ module CNB
       
         # process line
         items = line.split("|")
-      
+        
+        #mnozstvi
+        # it means 1czk = kurz/mnozstvi currency
+        amount = items[2].gsub(',','.').to_f
+        #kod
         currency = items[3]
-        amount = items[4].gsub(',','.').to_f
-      
-        @currencies[currency] = amount
+        #kurz
+        price = items[4].gsub(',','.').to_f
+        
+
+        @currencies[currency] = price/amount
       end
     end
   
