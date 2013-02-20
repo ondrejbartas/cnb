@@ -68,7 +68,6 @@ module CNB
     def get_rates
       url_text = "%s?date=%s" % [CNB_LIST, @request_date.strftime('%d.%m.%Y')]
     
-      puts url_text
       url = URI.parse(url_text)
       the_request = Net::HTTP::Get.new(url.to_s)
 
@@ -77,7 +76,6 @@ module CNB
       }
 
       raise "Response was not 200, response was #{the_response.code}" if the_response.code != "200"
-      puts the_response.body
       return the_response.body
     end
   end
