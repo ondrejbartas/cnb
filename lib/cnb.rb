@@ -10,7 +10,7 @@ module CNB
     attr_reader :date 
 
     LOCAL_CURRENCY = 'CZK'
-    CNB_LIST = "http://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt"
+    CNB_LIST = "https://www.cnb.cz/cs/financni_trhy/devizovy_trh/kurzy_devizoveho_trhu/denni_kurz.txt"
   
     def initialize(date = Date.today)
       @request_date = date
@@ -71,7 +71,7 @@ module CNB
       url = URI.parse(url_text)
       the_request = Net::HTTP::Get.new(url.to_s)
 
-      the_response = Net::HTTP.start(url.host, url.port) { |http|
+      the_response = Net::HTTP.start(url.host, url.port, use_ssl: true) { |http|
         http.request(the_request)
       }
 
