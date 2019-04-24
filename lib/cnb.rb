@@ -47,7 +47,7 @@ module CNB
         items = line.to_s.split("|")
         
         # skip line if it has not right number of columns
-        next if items.size == 5
+        next unless items.size == 5
         
         #mnozstvi
         # it means 1czk = kurz/mnozstvi currency
